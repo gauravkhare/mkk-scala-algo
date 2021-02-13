@@ -5,33 +5,20 @@ package search
   */
 object BinarySearch extends App{
 
-  val a = 1 to 10 toArray
-  var start = 0
-  var end = a.length-1
-  var pivot:Int = 0
-
-
-  def binSearch(array: Array[Int],n: Int,start:Int,end:Int):Int = {
-
-//    while (n == Array(pivot)) {
-//      if (n < array(pivot)) {
-//        pivot = end / 2
-//        binSearch(array, n, start, pivot)
-//      }
-//      if (n > array(pivot)) {
-//        pivot = end / 2
-//        binSearch(array, n, pivot, end)
-//      }
-//
-//      else return -23
-//
-//    }
-    return 0
+  private def binarySearch(array: Array[Int], start: Int, end: Int, n: Int): Int = {
+    val mid = (start + end) / 2
+    if(n == array(mid))
+      return mid
+    if(n > array(mid)) {
+      binarySearch(array, mid+1, end, n)
+    } else {
+      binarySearch(array, start, mid-1, n)
+    }
   }
 
+  def binarySearch(array: Array[Int], n: Int): Int = {
+    binarySearch(array,0,array.length-1,n)
+  }
 
-
-  val res = binSearch(a,4,0,a.length)
-
-
+  println(binarySearch(Array(1,3,4,34,67,89), 67))
 }
